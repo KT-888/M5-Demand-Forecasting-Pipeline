@@ -25,7 +25,6 @@ Kaggle:M5 Forecasting Accuracy - Kaggle
 project/<br>
 │<br>
 ├── main.py<br>
-├── config.py<br>
 ├── dataload_m5_subset.py  (data_loader)<br>
 │<br>
 ├── data/<br>
@@ -34,24 +33,20 @@ project/<br>
 │   └── sell_prices.csv<br>
 │<br>
 ├── pipeline/<br>
-│   ├── __init__.py<br>
 │   ├── feature_pipeline.py<br>
 │   ├── splitter.py<br>
 │<br>
 ├── features/<br>
-│   ├── __init__.py<br>
 │   ├── lag.py<br>
 │   ├── rolling.py<br>
 │   ├── calendar.py<br>
 │<br>
 ├── models/<br>
-│   ├── __init__.py<br>
 │   ├── train.py<br>
 │   ├── predict.py<br>
 │   └── evaluator.py<br>
 │<br>
 └── utils/<br>
-    ├── __init__.py<br>
     └── validator.py<br>
 
 # Pipeline
