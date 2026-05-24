@@ -23,7 +23,6 @@ Kaggle:M5 Forecasting Accuracy - Kaggle
 必要ファイル:
 
 project/<br>
-│<br>
 ├── main.py<br>
 ├── dataload_m5_subset.py  (data_loader)<br>
 │<br>
