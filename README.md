@@ -21,6 +21,7 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 Kaggle:<br>
 M5 Forecasting Accuracy<br>
 10store×20product×365日×3年<br>
+
 必要ファイル:<br>
 data/<br>
 ├── calendar.csv<br>
