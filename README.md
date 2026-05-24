@@ -96,14 +96,21 @@ Optuna を用いて LightGBM パラメータを最適化。
 •	regularization<br>
 
 ## 5. Forecasting
-未来 N 日予測に対応。
+未来 N 日予測に対応。<br>
 
-Example Result<br>
-CV MAE: 7.05 ± 0.50<br>
+予測結果（例）<br>
+-------------<br>
+Walkforward CV MAE : 7.81 ± 0.33<br>
+テスト MAE         : 7.80<br>
+テスト MAPE        : 40.7%<br>
+テスト sMAPE       : 44.2%<br>
 
-Test MAE : 7.15<br>
-MAPE     : 15.7%<br>
-sMAPE    : 14.6%<br>
+特徴<br>
+----<br>
+- CV と test の整合性が高く、過学習しにくい構成<br>
+- データリークを防止した時系列検証<br>
+- Walkforward Validation を採用<br>
+- 未来 7 日間の需要予測に対応<br>
 
 ## Tech Stack
 •	Python<br>
