@@ -34,12 +34,12 @@ project/<br>
 │<br>
 ├── pipeline/<br>
 │   ├── feature_pipeline.py<br>
-│   ├── splitter.py<br>
+│   └── splitter.py<br>
 │<br>
 ├── features/<br>
 │   ├── lag.py<br>
 │   ├── rolling.py<br>
-│   ├── calendar.py<br>
+│   └── calendar.py<br>
 │<br>
 ├── models/<br>
 │   ├── train.py<br>
