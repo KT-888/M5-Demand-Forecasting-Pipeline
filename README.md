@@ -26,36 +26,29 @@ project/<br>
 │<br>
 ├── main.py<br>
 ├── config.py<br>
-├── requirements.txt<br>
-├── README.md<br>
+├── dataload_m5_subset.py  (data_loader)<br>
 │<br>
 ├── data/<br>
 │   ├── calendar.csv<br>
 │   ├── sales_train_validation.csv<br>
 │   └── sell_prices.csv<br>
 │<br>
-├── data_loader/<br>
-│   ├── __init__.py<br>
-│   └── dataload_m5_subset.py<br>
-│<br>
 ├── pipeline/<br>
 │   ├── __init__.py<br>
 │   ├── feature_pipeline.py<br>
 │   ├── splitter.py<br>
-│   └── future_dataframe.py<br>
 │<br>
 ├── features/<br>
 │   ├── __init__.py<br>
 │   ├── lag.py<br>
 │   ├── rolling.py<br>
 │   ├── calendar.py<br>
-│   └── price.py<br>
 │<br>
 ├── models/<br>
 │   ├── __init__.py<br>
 │   ├── train.py<br>
 │   ├── predict.py<br>
-│   └── optuna_search.py<br>
+│   └── evaluator.py<br>
 │<br>
 └── utils/<br>
     ├── __init__.py<br>
