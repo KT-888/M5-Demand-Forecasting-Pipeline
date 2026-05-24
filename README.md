@@ -15,8 +15,8 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 •	M5 dataset 対応 loader<br>
 
 # Dataset
-使用データセット:
-•	M5 Forecasting Accuracy
+使用データセット:<br>
+•	M5 Forecasting Accuracy<br>
 
 Kaggle:M5 Forecasting Accuracy - Kaggle
 
