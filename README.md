@@ -18,10 +18,15 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 使用データセット:<br>
 •	M5 Forecasting Accuracy<br>
 
-Kaggle:M5 Forecasting Accuracy - Kaggle
+Kaggle:<br>
+M5 Forecasting Accuracy<br>
+必要ファイル:<br>
+data/<br>
+├── calendar.csv<br>
+├── sales_train_validation.csv<br>
+└── sell_prices.csv<br>
 
-必要ファイル:
-
+# Project Structure
 project/<br>
 ├── main.py<br>
 ├── dataload_m5_subset.py  (data_loader)<br>
