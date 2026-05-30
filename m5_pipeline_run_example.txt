@@ -1,3 +1,113 @@
+
+M5 Forcasting20260530v2.ipynb
+M5 Forcasting20260530v2.ipynb_
+
+[1]
+18 秒
+   1
+   2
+from google.colab import drive
+drive.mount('/content/drive')
+Mounted at /content/drive
+
+[2]
+0 秒
+   1
+!ls "/content/drive/MyDrive"
+'99_マーケット分析 Waveletはここに入っている'
+ bayesian_statistics_sample
+ BULLPAPER.gdoc
+ cnn_cifar10
+'Colab Notebooks'
+ df_2016.csv
+ df_2017.csv
+ df_2018.csv
+ df_2019.csv
+ df_2020.csv
+ df_2021.csv
+ df_2022.csv
+ df_bitcoin.csv
+'Gmail (1)'
+ Goldw.csv
+ Goldw_seasnal52_output.csv
+ IMG_1974.jpg
+'IMG_1976 (1).gdoc'
+'IMG_1976 (2).gdoc'
+ IMG_1976.gdoc
+ IMG_1976.jpg
+ kaggle
+ novels
+'Python Jissen Data Analysis'
+ README.txt
+ sp500wc.csv
+ sp500_weekly_close.csv
+ sp500_weekly_ohlc.csv
+ sp500w_FTT.csv
+'sp500w_RW seasnal12_output.csv'
+'sp500w_RW seasnal24_output.csv'
+'sp500w_RW seasnal36_output.csv'
+ sp500w_seasnal52.csv
+ sp500w_seasnal52_output.csv
+ テスト0528.docx
+ テスト0528.gdoc
+ トランプ　仮想通貨.gdoc
+'仮想通貨　TRANSACTIONS IN THE LAST 24 HOURS　ランキング　100.gsheet'
+ 仮想通貨のトランザクション処理量のランキングが見れるサイト.gsheet
+ 無題のスプレッドシート.gsheet
+'照明灯IDの１から１１９２までの１１９２個分のデータすべて下さい (1).gsheet'
+ 照明灯IDの１から１１９２までの１１９２個分のデータすべて下さい.gsheet
+ 照明灯のポール（柱）についている照明に関する銘板の内容と対比して整理し、excelで出力してください.gsheet
+
+[3]
+0 秒
+   1
+ %cd "/content/drive/MyDrive/kaggle/M5 Forcasting/demand_forecast_20260530_V5完成 M5 forcasting"
+/content/drive/MyDrive/kaggle/M5 Forcasting/demand_forecast_20260530_V5完成 M5 forcasting
+
+[4]
+0 秒
+   1
+#!ls
+
+[5]
+8 秒
+   1
+!pip install lightgbm optuna -q
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 419.5/419.5 kB 8.1 MB/s eta 0:00:00
+
+[6]
+27 秒
+   1
+!python dataload_m5_subset.py
+loading M5...
+  store      product       date  sales  price  onpromotion  stock
+0  CA_1  FOODS_3_090 2011-01-29  107.0   1.25            0   9999
+1  CA_1  FOODS_3_090 2011-01-30  182.0   1.25            0   9999
+2  CA_1  FOODS_3_090 2011-01-31   47.0   1.25            0   9999
+3  CA_1  FOODS_3_090 2011-02-01   47.0   1.25            0   9999
+4  CA_1  FOODS_3_090 2011-02-02   62.0   1.25            0   9999
+(57390, 7)
+store          0
+product        0
+date           0
+sales          0
+price          0
+onpromotion    0
+stock          0
+dtype: int64
+store                  object
+product                object
+date           datetime64[ns]
+sales                 float32
+price                 float32
+onpromotion             int64
+stock                   int64
+dtype: object
+(57390, 7)
+
+[7]
+1 時間
+1
 📦 M5 データを読み込み中...
 loading M5...
   store      product       date  sales  price  onpromotion  stock
@@ -23,11 +133,17 @@ price                 float32
 onpromotion             int64
 stock                   int64
 dtype: object
-✅ データ読み込み完了: 57,390 行
+✅ M5　データ読み込み完了: 57,390 行
 
 ============================================================
 ⚙  1. 前処理・特徴量生成
 ============================================================
+
+🔍 生データ検証:
+✅ validate_raw_input: 問題なし
+
+🔍 特徴量スキーマ検証:
+✅ validate_feature_schema: 問題なし
 📊 生成された特徴量の数: 25 個
 📉 先頭 28 日分を除外（ウォームアップ期間）
    除外期間: 2011-01-29 ～ 2011-02-25
@@ -43,11 +159,11 @@ dtype: object
   Fold 1: 学習=[2011-02-26, 2015-04-11] (45,180行) / 検証=[2015-04-12, 2015-08-15] (3,780行)
   Fold 2: 学習=[2011-02-26, 2015-08-15] (48,960行) / 検証=[2015-08-16, 2015-12-19] (3,780行)
   Fold 3: 学習=[2011-02-26, 2015-12-19] (52,740行) / 検証=[2015-12-20, 2016-04-24] (3,810行)
-✅ 特徴量カラムは完全一致
+✅ 特徴量カラム・dtype は完全一致
   Fold 1 MAE: 8.1881
-✅ 特徴量カラムは完全一致
+✅ 特徴量カラム・dtype は完全一致
   Fold 2 MAE: 7.8448
-✅ 特徴量カラムは完全一致
+✅ 特徴量カラム・dtype は完全一致
   Fold 3 MAE: 7.3883
 
 📊 CV MAE: 7.8071 ± 0.3276
@@ -59,91 +175,98 @@ dtype: object
 ✂️  学習期間  : 2011-02-26 ～ 2014-03-31  (33,900 行)
 🧪 検証期間  : 2014-04-01 ～ 2015-04-12  (11,310 行)
 🎯 テスト期間: 2015-04-13  ～ 2016-04-24   (11,340 行)
-✅ 特徴量カラムは完全一致
-✅ 特徴量カラムは完全一致
+
+🔍 分割データ整合性検証:
+✅ 特徴量カラム・dtype は完全一致
+✅ 特徴量カラム・dtype は完全一致
 
 ============================================================
 🎯 4. Optuna ハイパーパラメータ最適化
 ============================================================
-Best trial: 149. Best value: 9.04027: 100% 150/150 [22:26<00:00,  8.98s/it]
+Best trial: 96. Best value: 9.74658: 100% 150/150 [1:02:16<00:00, 24.91s/it]
 
 🎉 最適パラメータ:
-  learning_rate: 0.007707706227874917
-  num_leaves: 47
-  max_depth: 7
-  feature_fraction: 0.6853611450136528
-  bagging_fraction: 0.6892293615848869
-  bagging_freq: 6
-  min_data_in_leaf: 72
-  lambda_l1: 0.03772225437782507
-  lambda_l2: 1.1140310947595502e-05
-  best_iteration: 2918
+  learning_rate: 0.024005541317792384
+  num_leaves: 188
+  max_depth: 4
+  feature_fraction: 0.6995332590804147
+  bagging_fraction: 0.7444826563431961
+  bagging_freq: 8
+  min_data_in_leaf: 19
+  lambda_l1: 0.002519311417832882
+  lambda_l2: 4.260058879376152e-06
+  best_iteration: 752
 
-📈 Best MAE（検証データ）: 9.0403
+📈 Best CV MAE: 9.7466
 
 ============================================================
 📦 5. 最終モデル学習（train + valid）
 ============================================================
-  ℹ️  最終モデル学習回数: 2918 × 1.1 = 3209 回
+  ℹ️  最終モデル学習回数: 752 × 1.1 = 827 回
 
 ============================================================
 📊 6. モデル評価（test データ・学習に使っていない公正な評価）
 ============================================================
 
 ✅ 検証データの評価結果:
-  MAE          : 7.8004  （平均 7.8 個のズレ）
-  MAPE（y>0）  : 40.7075%  ※ 実績ゼロの日を除いた誤差率
-  sMAPE（全行）: 44.1774%  ※ ゼロ安全な対称MAPE
+  MAE          : 7.9044  （平均 7.9 個のズレ）
+  MAPE（y>0）  : 40.5570%  ※ 実績ゼロの日を除いた誤差率
+  sMAPE（全行）: 47.8016%  ※ ゼロ安全な対称MAPE
+  RMSSE        : 0.5706  ※ <1.0 でナイーブ予測より良い
+/content/drive/MyDrive/kaggle/M5 Forcasting/demand_forecast_20260530_V5完成 M5 forcasting/model/evaluator.py:90: RuntimeWarning: divide by zero encountered in divide
+  result_df["mape_num"]  = np.where(y_arr > 0, np.abs(y_arr - preds) / y_arr, np.nan)
+/content/drive/MyDrive/kaggle/M5 Forcasting/demand_forecast_20260530_V5完成 M5 forcasting/model/evaluator.py:90: RuntimeWarning: invalid value encountered in divide
+  result_df["mape_num"]  = np.where(y_arr > 0, np.abs(y_arr - preds) / y_arr, np.nan)
 
-📊 店舗別 MAE（ズレが大きい上位5店舗）:
-store       mae     mape    smape
- CA_3 10.156751 0.356613 0.394969
- CA_1  7.082649 0.494391 0.513665
- CA_2  6.161674 0.376557 0.416689
+📊 店舗別評価（MAE 降順）:
+store       mae     mape    smape    rmsse
+ CA_3 10.351187 0.352738 0.431656 0.544481
+ CA_1  7.165204 0.489962 0.545167 0.532033
+ CA_2  6.196781 0.380232 0.457226 0.861070
 
-📊 特徴量の重要度 Top 10（数値が大きいほど予測に寄与している）:
-feature   importance
-   ma28 3.358935e+06
-    ma7 3.274998e+06
-  lag_1 8.749811e+05
-   std7 5.935934e+05
-  price 2.528017e+05
-  lag_7 1.821308e+05
- lag_14 1.681431e+05
-     曜日 1.434449e+05
-      月 9.337947e+04
-    土日か 2.758273e+04
+📊 商品別評価（MAE 降順 上位5商品）:
+    product       mae     mape    smape    rmsse
+FOODS_3_090 16.527621 0.365443 0.491070 0.480808
+FOODS_3_120 13.174461 0.565179 0.455493 0.952054
+FOODS_3_252  8.668623 0.240910 0.225936 0.776353
+FOODS_3_586  8.569807 0.186262 0.185008 0.694678
+FOODS_3_587  6.431432 0.377998 0.288442 0.636638
+
+📊 特徴量の重要度 Top 10:
+feature    importance
+   ma28 971122.586027
+    ma7 879302.189045
+  lag_1 363853.288343
+   std7 160145.646844
+  price  58271.893660
+  lag_7  55038.395434
+     曜日  47338.229367
+ lag_14  39790.141432
+      月  19337.839815
+    土日か  11980.036491
 
 ============================================================
 🔮 7. 未来 7 日予測
 ============================================================
-/content/drive/MyDrive/kaggle/M5 Forcasting/demand_forecast_20260523_V3完成/model/predictor.py:79: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
-  df = pd.concat([df, future_rows], ignore_index=True)
-/content/drive/MyDrive/kaggle/M5 Forcasting/demand_forecast_20260523_V3完成/model/predictor.py:94: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '[3.97331615e+01 3.89245581e+01 3.26537218e+01 2.71599411e-04
- 1.55961207e+01 3.84226114e+01 1.89527986e+01 2.71599411e-04
- 1.46119970e+01 8.77584380e-03 4.38764781e+01 1.65066858e+01
- 2.88914065e+01 4.68244386e-03 1.99148752e+01 3.08652104e+01
- 1.50053017e+01 7.97311234e-03 1.34608824e+01 1.54986612e-02
- 9.23012023e+01 6.95205169e+01 3.87476626e+01 1.12841060e-02
- 2.92453087e+01 6.56265005e+01 3.12816100e+01 2.84528500e-02
- 2.50781255e+01 2.98465674e-02]' has dtype incompatible with float32, please explicitly cast to a compatible dtype first.
-  df.loc[df["date"] == target_date, "sales"] = preds
+
+🔍 予測入力データ検証:
+✅ validate_predict_input: 問題なし
 
 📈 予測完了: 210 行
 📅 予測期間: 2016-04-25 ～ 2016-05-01
 
 📋 予測結果サンプル（先頭10行）:
 store     product       date     sales
- CA_1 FOODS_3_090 2016-04-25 39.733162
- CA_1 FOODS_3_120 2016-04-25 38.924558
- CA_1 FOODS_3_252 2016-04-25 32.653722
- CA_1 FOODS_3_541 2016-04-25  0.000272
- CA_1 FOODS_3_555 2016-04-25 15.596121
- CA_1 FOODS_3_586 2016-04-25 38.422611
- CA_1 FOODS_3_587 2016-04-25 18.952799
- CA_1 FOODS_3_635 2016-04-25  0.000272
- CA_1 FOODS_3_714 2016-04-25 14.611997
- CA_1 FOODS_3_808 2016-04-25  0.008776
+ CA_1 FOODS_3_090 2016-04-25 38.662243
+ CA_1 FOODS_3_120 2016-04-25 40.969051
+ CA_1 FOODS_3_252 2016-04-25 33.071205
+ CA_1 FOODS_3_541 2016-04-25  0.000000
+ CA_1 FOODS_3_555 2016-04-25 14.834606
+ CA_1 FOODS_3_586 2016-04-25 34.353020
+ CA_1 FOODS_3_587 2016-04-25 17.282629
+ CA_1 FOODS_3_635 2016-04-25  0.000000
+ CA_1 FOODS_3_714 2016-04-25 15.148322
+ CA_1 FOODS_3_808 2016-04-25  0.000000
 
 ============================================================
 🎉 すべての処理が完了しました！
