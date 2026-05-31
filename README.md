@@ -83,8 +83,7 @@ M5 データセットを long format に変換。
 
 ## 3. Validation
 Walkforward Cross Validation を採用。<br>
-未来データ leakage を防止し、<br>
-実運用に近い検証を行います。
+未来データ leakage を防止し、実運用に近い検証を行います。
 
 ## 4. Hyperparameter Optimization
 Optuna を用いて LightGBM パラメータを最適化。
