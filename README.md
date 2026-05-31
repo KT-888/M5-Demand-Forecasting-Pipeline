@@ -3,7 +3,7 @@ M5 Forecasting データセットを用いた 実務向け需要予測パイプ�
 LightGBM + Optuna + Walkforward Validation を用いて、
 店舗×商品の時系列需要予測を行います。
 
-# Features
+# Key Features
 •	LightGBM による需要予測<br>
 •	WalkforwardCrossValidation<br>
 •	Optuna によるハイパーパラメータ最適化<br>
