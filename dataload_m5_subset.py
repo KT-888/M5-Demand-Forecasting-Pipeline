@@ -6,10 +6,8 @@ M5 Forecasting を
 """
 
 from pathlib import Path
-
 import numpy as np
 import pandas as pd
-
 
 # project/data/
 DATA_DIR = Path("data")
@@ -19,31 +17,20 @@ N_PRODUCTS = 10
 
 
 def load_m5_subset():
-
     print("loading M5...")
 
     # -----------------------------
     # csv
     # -----------------------------
-
-    calendar = pd.read_csv(
-        DATA_DIR / "calendar.csv"
-    )
-
-    sales = pd.read_csv(
-        DATA_DIR / "sales_train_validation.csv"
-    )
-
-    prices = pd.read_csv(
-        DATA_DIR / "sell_prices.csv"
-    )
+    calendar = pd.read_csv(DATA_DIR / "calendar.csv")
+    sales = pd.read_csv(DATA_DIR / "sales_train_validation.csv")
+    prices = pd.read_csv(DATA_DIR / "sell_prices.csv")
 
     # -----------------------------
     # subset
     # -----------------------------
     # 最初は小さく回す
     # -----------------------------
-
     stores = (
         sales["store_id"]
         .drop_duplicates()
@@ -51,29 +38,19 @@ def load_m5_subset():
         .head(N_STORES)
     )
 
-    sales = sales[
-        sales["store_id"].isin(stores)
-    ].copy()
+    sales = sales[sales["store_id"].isin(stores)].copy()
 
     # -----------------------------
     # d_ columns
     # -----------------------------
-
-    d_cols = [
-        c for c in sales.columns
-        if c.startswith("d_")
-    ]
+    d_cols = [c for c in sales.columns if c.startswith("d_")]
 
     # -----------------------------
     # 売上上位商品
     # -----------------------------
     # intermittent demand を避ける
     # -----------------------------
-
-    item_sales = (
-        sales[d_cols]
-        .sum(axis=1)
-    )
+    item_sales = sales[d_cols].sum(axis=1)
 
     item_sales = (
         pd.DataFrame({
@@ -85,15 +62,9 @@ def load_m5_subset():
         .sort_values(ascending=False)
     )
 
-    top_items = (
-        item_sales
-        .head(N_PRODUCTS)
-        .index
-    )
+    top_items = item_sales.head(N_PRODUCTS).index
 
-    sales = sales[
-        sales["item_id"].isin(top_items)
-    ].copy()
+    sales = sales[sales["item_id"].isin(top_items)].copy()
 
     # -----------------------------
     # wide → long
@@ -102,7 +73,6 @@ def load_m5_subset():
     # ↓
     # date / sales
     # -----------------------------
-
     df = sales.melt(
         id_vars=[
             "store_id",
@@ -117,19 +87,10 @@ def load_m5_subset():
     # -----------------------------
     # calendar merge
     # -----------------------------
-
-    calendar["date"] = pd.to_datetime(
-        calendar["date"]
-    )
+    calendar["date"] = pd.to_datetime(calendar["date"])
 
     df = df.merge(
-        calendar[
-            [
-                "d",
-                "date",
-                "wm_yr_wk",
-            ]
-        ],
+        calendar[["d", "date", "wm_yr_wk"]],
         on="d",
         how="left",
     )
@@ -137,16 +98,13 @@ def load_m5_subset():
     # -----------------------------
     # price merge
     # -----------------------------
-
     df = df.merge(
-        prices[
-            [
-                "store_id",
-                "item_id",
-                "wm_yr_wk",
-                "sell_price",
-            ]
-        ],
+        prices[[
+            "store_id",
+            "item_id",
+            "wm_yr_wk",
+            "sell_price",
+        ]],
         on=[
             "store_id",
             "item_id",
@@ -156,15 +114,11 @@ def load_m5_subset():
     )
 
     # M5 は未販売週に NaN がある
-    df["sell_price"] = (
-        df["sell_price"]
-        .fillna(df["sell_price"].median())
-    )
+    df["sell_price"] = df["sell_price"].fillna(df["sell_price"].median())
 
     # -----------------------------
     # pipeline 用列名
     # -----------------------------
-
     df = df.rename(
         columns={
             "store_id": "store",
@@ -180,23 +134,18 @@ def load_m5_subset():
     # -----------------------------
     # keep columns
     # -----------------------------
-
-    df = df[
-        [
-            "store",
-            "product",
-            "date",
-            "sales",
-            "price",
-            "onpromotion",
-            "stock",
-        ]
-    ]
+    df = df[[
+        "store",
+        "product",
+        "date",
+        "sales",
+        "price",
+        "onpromotion",
+        "stock",
+    ]]
 
     # lag / rolling 用
-    df = df.sort_values(
-        ["store", "product", "date"]
-    ).reset_index(drop=True)
+    df = df.sort_values(["store", "product", "date"]).reset_index(drop=True)
 
     # 軽量化
     df["sales"] = df["sales"].astype(np.float32)
@@ -211,7 +160,5 @@ def load_m5_subset():
 
 
 if __name__ == "__main__":
-
     df = load_m5_subset()
-
     print(df.shape)
