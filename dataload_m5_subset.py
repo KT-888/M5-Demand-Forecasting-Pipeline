@@ -31,12 +31,7 @@ def load_m5_subset():
     # -----------------------------
     # 最初は小さく回す
     # -----------------------------
-    stores = (
-        sales["store_id"]
-        .drop_duplicates()
-        .sort_values()
-        .head(N_STORES)
-    )
+    stores = sales["store_id"].drop_duplicates().sort_values().head(N_STORES)
 
     sales = sales[sales["store_id"].isin(stores)].copy()
 
@@ -53,10 +48,7 @@ def load_m5_subset():
     item_sales = sales[d_cols].sum(axis=1)
 
     item_sales = (
-        pd.DataFrame({
-            "item_id": sales["item_id"],
-            "sales": item_sales,
-        })
+        pd.DataFrame({"item_id": sales["item_id"], "sales": item_sales})
         .groupby("item_id")["sales"]
         .sum()
         .sort_values(ascending=False)
@@ -74,11 +66,7 @@ def load_m5_subset():
     # date / sales
     # -----------------------------
     df = sales.melt(
-        id_vars=[
-            "store_id",
-            "item_id",
-            "state_id",
-        ],
+        id_vars=["store_id", "item_id", "state_id"],
         value_vars=d_cols,
         var_name="d",
         value_name="sales",
@@ -99,17 +87,8 @@ def load_m5_subset():
     # price merge
     # -----------------------------
     df = df.merge(
-        prices[[
-            "store_id",
-            "item_id",
-            "wm_yr_wk",
-            "sell_price",
-        ]],
-        on=[
-            "store_id",
-            "item_id",
-            "wm_yr_wk",
-        ],
+        prices[["store_id", "item_id", "wm_yr_wk", "sell_price"]],
+        on=["store_id", "item_id", "wm_yr_wk"],
         how="left",
     )
 
@@ -134,15 +113,7 @@ def load_m5_subset():
     # -----------------------------
     # keep columns
     # -----------------------------
-    df = df[[
-        "store",
-        "product",
-        "date",
-        "sales",
-        "price",
-        "onpromotion",
-        "stock",
-    ]]
+    df = df[["store", "product", "date", "sales", "price", "onpromotion", "stock"]]
 
     # lag / rolling 用
     df = df.sort_values(["store", "product", "date"]).reset_index(drop=True)
