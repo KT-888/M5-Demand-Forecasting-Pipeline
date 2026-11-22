@@ -49,8 +49,8 @@ project/<br>
 │   └── calendar.py<br>
 │<br>
 ├── models/<br>
-│   ├── train.py<br>
-│   ├── predict.py<br>
+│   ├── trainer.py<br>
+│   ├── predictor.py<br>
 │   └── evaluator.py<br>
 ├── tests/<br>
 │<br>
