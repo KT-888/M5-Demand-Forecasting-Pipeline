@@ -1,0 +1,7 @@
+pandas
+numpy
+lightgbm
+optuna
+scikit-learn
+holidays
+matplotlib
