@@ -52,12 +52,12 @@ unzip sell_prices.zip
 
 展開後の `data/` は次の構成になります。
 
-```
+
 data/
 ├── calendar.csv
 ├── sales_train_validation.csv
 └── sell_prices.csv
-```
+
 
 # Project Structure
 project/<br>
