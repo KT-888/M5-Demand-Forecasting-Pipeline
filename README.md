@@ -28,10 +28,6 @@ data/<br>
 ├── sales_train_validation.csv<br>
 └── sell_prices.csv<br>
 
-# 公開範囲について
-本リポジトリは一部モジュール(分割・学習・評価など)を非公開としています。
-公開部分と実行結果の例(m5_pipeline_run_example.txt)で、設計方針と検証結果を確認できます。
-
 # Project Structure
 project/<br>
 ├── main.py<br>
