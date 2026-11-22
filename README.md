@@ -46,8 +46,7 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 
 動作環境: Python 3.11 以上
 
-
-1. **リポジトリを取得
+1. **1. **リポジトリを取得
 git clone https://github.com/KT-888/M5-Demand-Forecasting-Pipeline.git
 cd M5-Demand-Forecasting-Pipeline
 
