@@ -51,7 +51,7 @@ git clone https://github.com/KT-888/M5-Demand-Forecasting-Pipeline.git<br>
 cd M5-Demand-Forecasting-Pipeline<br>
 
 2. ライブラリをインストール<br>
-pip install -r requirements.txt<br>
+pip install -r  requirements.txt<br>
 
 3. データを展開(data/ にzipが同梱されています)<br>
 cd data<br>
