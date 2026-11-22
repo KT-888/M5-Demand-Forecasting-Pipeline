@@ -48,7 +48,7 @@ project/<br>
 │   ├── rolling.py<br>
 │   └── calendar.py<br>
 │<br>
-├── models/<br>
+├── model/<br>
 │   ├── trainer.py<br>
 │   ├── predictor.py<br>
 │   └── evaluator.py<br>
