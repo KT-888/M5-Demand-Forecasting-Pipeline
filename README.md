@@ -43,11 +43,6 @@ data/
 └── sell_prices.csv
 ```
 
-data/<br>
-├── calendar.csv<br>
-├── sales_train_validation.zip (展開すると .csv)<br>
-└── sell_prices.zip (展開すると .csv)<br>
-
 # Project Structure
 project/<br>
 ├── main.py<br>
@@ -56,8 +51,8 @@ project/<br>
 │<br>
 ├── data/<br>
 │   ├── calendar.csv<br>
-│   ├── sales_train_validation.zip<br>
-│   └── sell_prices.zip<br>
+│   ├── sales_train_validation.zip (展開すると .csv)<br>
+│   └── sell_prices.zip (展開すると .csv)<br>
 │<br>
 ├── pipeline/<br>
 │   ├── feature_pipeline.py<br>
