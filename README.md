@@ -69,6 +69,9 @@ data/<br>
 4.  実行<br>
 python main.py<br>
 
+(5). テストの実行<br>
+pytest<br>
+100件のテストが、数秒で実行されます。<br>
 
 - Windows で `unzip` が使えない場合は、エクスプローラーでzipを右クリックして
 `data/` の中に展開してください。
@@ -77,10 +80,6 @@ python main.py<br>
 - Optuna は 150 試行のため、実行ログ(`m5_pipeline_run_example.txt`)では約1時間かかっています。
   短時間で動作を確認したい場合は、`main.py` の `n_trials=150` を小さい値(例: 3)にしてください。
 - 実行結果の例は `m5_pipeline_run_example.txt` を参照してください。
-
-◇テストの実行
-pytest
-100件のテストが、数秒で実行されます。
 
 # Project Structure
 project/<br>
