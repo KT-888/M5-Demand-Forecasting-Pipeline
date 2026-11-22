@@ -66,8 +66,8 @@ data/<br>
 ├── sales_train_validation.csv<br>
 └── sell_prices.csv<br>
 
-4. ** 実行
-python main.py
+4.  実行<br>
+python main.py<br>
 
 
 Windows で `unzip` が使えない場合は、エクスプローラーでzipを右クリックして
