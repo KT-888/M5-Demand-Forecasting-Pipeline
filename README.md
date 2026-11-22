@@ -46,7 +46,7 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 
 動作環境: Python 3.11 以上
 
-```
+
 # 1. リポジトリを取得
 git clone https://github.com/KT-888/M5-Demand-Forecasting-Pipeline.git
 cd M5-Demand-Forecasting-Pipeline
@@ -60,9 +60,16 @@ unzip sales_train_validation.zip
 unzip sell_prices.zip
 cd ..
 
+展開後の `data/` は次の構成になります。
+
+data/<br>
+├── calendar.csv<br>
+├── sales_train_validation.csv<br>
+└── sell_prices.csv<br>
+
 # 4. 実行
 python main.py
-```
+
 
 Windows で `unzip` が使えない場合は、エクスプローラーでzipを右クリックして
 `data/` の中に展開してください。
@@ -81,14 +88,6 @@ pytest
 ```
 
 100件のテストが、数秒で実行されます。
-
-展開後の `data/` は次の構成になります。
-
-data/<br>
-├── calendar.csv<br>
-├── sales_train_validation.csv<br>
-└── sell_prices.csv<br>
-
 
 # Project Structure
 project/<br>
