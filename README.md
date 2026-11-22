@@ -69,7 +69,7 @@ data/<br>
 4.  実行<br>
 python main.py<br>
 
-(5). テストの実行<br>
+5.  (テストの実行)<br>
 pytest<br>
 100件のテストが、数秒で実行されます。<br>
 
