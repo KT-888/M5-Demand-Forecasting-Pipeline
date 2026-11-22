@@ -131,7 +131,7 @@ Walkforward CV MAE : 7.81 ± 0.33<br>
 
 特徴<br>
 ----<br>
-- CV と test の整合性が高く、過学習しにくい構成<br>
+- CV(軽量モデル)とtestのMAEが近い<br>
 - データリークを防止した時系列検証<br>
 - Walkforward Validation を採用<br>
 - 未来 7 日間の需要予測に対応<br>
