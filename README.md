@@ -31,6 +31,7 @@ data/<br>
 # Project Structure
 project/<br>
 ├── main.py<br>
+├── config.py<br>
 ├── dataload_m5_subset.py  (data_loader)<br>
 │<br>
 ├── data/<br>
@@ -51,6 +52,7 @@ project/<br>
 │   ├── train.py<br>
 │   ├── predict.py<br>
 │   └── evaluator.py<br>
+├── tests/<br>
 │<br>
 └── utils/<br>
 　    └── validator.py<br>
