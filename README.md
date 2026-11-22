@@ -44,9 +44,9 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 
 ## データの展開
 
-cd data
-unzip sales_train_validation.zip
-unzip sell_prices.zip
+cd data<br>
+unzip sales_train_validation.zip<br>
+unzip sell_prices.zip<br>
 
 
 展開後の `data/` は次の構成になります。
