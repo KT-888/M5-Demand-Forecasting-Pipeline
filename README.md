@@ -15,31 +15,38 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 •	M5 dataset 対応 loader<br>
 
 # Dataset
-使用データセット:<br>
-•	M5 Forecasting Accuracy<br>
 
-Kaggle:<br>
-M5 Forecasting Accuracy<br>
-10store×20product×365日×3年<br>
-
-必要ファイル:<br>
-# Dataset
-使用データセット: M5 Forecasting Accuracy
+使用データセット: M5 Forecasting Accuracy<br>
 (Kaggle / ニコシア大学 主催: https://www.kaggle.com/c/m5-forecasting-accuracy)
 
-動作確認用に、data/ にデータを同梱しています。
-出典: Zenodo掲載版(Kaggle提供, CC BY 4.0)
-https://zenodo.org/records/12636070
+本パイプラインは、M5 のうち **3店舗×10商品×1,913日**
+(2011-01-29〜2016-04-24、57,390行)のサブセットを使用します。
+店舗数・商品数は `dataload_m5_subset.py` の `N_STORES` / `N_PRODUCTS` で変更できます。
 
-【データの展開】
+動作確認用に、`data/` にデータを同梱しています。<br>
+出典: Zenodo掲載版(Kaggle提供, CC BY 4.0) https://zenodo.org/records/12636070
+
+## データの展開
+
+```
 cd data
 unzip sales_train_validation.zip
 unzip sell_prices.zip
+```
+
+展開後の `data/` は次の構成になります。
+
+```
+data/
+├── calendar.csv
+├── sales_train_validation.csv
+└── sell_prices.csv
+```
 
 data/<br>
 ├── calendar.csv<br>
-├── sales_train_validation.zip<br>
-└── sell_prices.zip<br>
+├── sales_train_validation.zip (展開すると .csv)<br>
+└── sell_prices.zip (展開すると .csv)<br>
 
 # Project Structure
 project/<br>
@@ -49,8 +56,8 @@ project/<br>
 │<br>
 ├── data/<br>
 │   ├── calendar.csv<br>
-│   ├── sales_train_validation.csv<br>
-│   └── sell_prices.csv<br>
+│   ├── sales_train_validation.zip<br>
+│   └── sell_prices.zip<br>
 │<br>
 ├── pipeline/<br>
 │   ├── feature_pipeline.py<br>
