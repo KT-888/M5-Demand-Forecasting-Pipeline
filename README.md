@@ -42,12 +42,45 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 動作確認用に、`data/` にデータを同梱しています。<br>
 出典: Zenodo掲載版(Kaggle提供, CC BY 4.0) https://zenodo.org/records/12636070
 
-## データの展開
+# 実行手順
 
-cd data<br>
-unzip sales_train_validation.zip<br>
-unzip sell_prices.zip<br>
+動作環境: Python 3.11 以上
 
+```
+# 1. リポジトリを取得
+git clone https://github.com/KT-888/M5-Demand-Forecasting-Pipeline.git
+cd M5-Demand-Forecasting-Pipeline
+
+# 2. ライブラリをインストール
+pip install -r requirements.txt
+
+# 3. データを展開(data/ にzipが同梱されています)
+cd data
+unzip sales_train_validation.zip
+unzip sell_prices.zip
+cd ..
+
+# 4. 実行
+python main.py
+```
+
+Windows で `unzip` が使えない場合は、エクスプローラーでzipを右クリックして
+`data/` の中に展開してください。
+
+`main.py` は、前処理 → Walkforward CV → Optuna による最適化 → 最終モデルの学習 →
+テスト評価 → 未来7日間の予測までを、一度に実行します。
+
+- Optuna は 150 試行のため、実行ログ(`m5_pipeline_run_example.txt`)では約1時間かかっています。
+  短時間で動作を確認したい場合は、`main.py` の `n_trials=150` を小さい値(例: 3)にしてください。
+- 実行結果の例は `m5_pipeline_run_example.txt` を参照してください。
+
+## テストの実行
+
+```
+pytest
+```
+
+100件のテストが、数秒で実行されます。
 
 展開後の `data/` は次の構成になります。
 
