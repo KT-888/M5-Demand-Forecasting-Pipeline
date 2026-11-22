@@ -46,20 +46,20 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 
 動作環境: Python 3.11 以上
 
-1. リポジトリを取得
-git clone https://github.com/KT-888/M5-Demand-Forecasting-Pipeline.git
-cd M5-Demand-Forecasting-Pipeline
+1. リポジトリを取得<br>
+git clone https://github.com/KT-888/M5-Demand-Forecasting-Pipeline.git<br>
+cd M5-Demand-Forecasting-Pipeline<br>
 
-2. ライブラリをインストール
-pip install -r requirements.txt
+2. ライブラリをインストール<br>
+pip install -r requirements.txt<br>
 
-3. データを展開(data/ にzipが同梱されています)
-cd data
-unzip sales_train_validation.zip
-unzip sell_prices.zip
-cd ..
+3. データを展開(data/ にzipが同梱されています)<br>
+cd data<br>
+unzip sales_train_validation.zip<br>
+unzip sell_prices.zip<br>
+cd ..<br>
 
-展開後の `data/` は次の構成になります。
+展開後の `data/` は次の構成になります。<br>
 
 data/<br>
 ├── calendar.csv<br>
