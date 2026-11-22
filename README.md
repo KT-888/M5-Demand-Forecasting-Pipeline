@@ -44,14 +44,12 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 
 ## データの展開
 
-```
 cd data
 unzip sales_train_validation.zip
 unzip sell_prices.zip
-```
+
 
 展開後の `data/` は次の構成になります。
-
 
 data/<br>
 ├── calendar.csv<br>
