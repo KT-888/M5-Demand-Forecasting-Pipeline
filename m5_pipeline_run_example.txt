@@ -103,10 +103,6 @@ Best trial: 96. Best value: 9.74658: 100% 150/150 [1:02:16<00:00, 24.91s/it]
   MAPE（y>0）  : 40.5570%  ※ 実績ゼロの日を除いた誤差率
   sMAPE（全行）: 47.8016%  ※ ゼロ安全な対称MAPE
   RMSSE        : 0.5706  ※ <1.0 でナイーブ予測より良い
-/content/drive/MyDrive/kaggle/M5 Forcasting/demand_forecast_20260530_V5完成 M5 forcasting/model/evaluator.py:90: RuntimeWarning: divide by zero encountered in divide
-  result_df["mape_num"]  = np.where(y_arr > 0, np.abs(y_arr - preds) / y_arr, np.nan)
-/content/drive/MyDrive/kaggle/M5 Forcasting/demand_forecast_20260530_V5完成 M5 forcasting/model/evaluator.py:90: RuntimeWarning: invalid value encountered in divide
-  result_df["mape_num"]  = np.where(y_arr > 0, np.abs(y_arr - preds) / y_arr, np.nan)
 
 📊 店舗別評価（MAE 降順）:
 store       mae     mape    smape    rmsse
