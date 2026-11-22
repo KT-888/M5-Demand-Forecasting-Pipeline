@@ -80,7 +80,7 @@ Windows で `unzip` が使えない場合は、エクスプローラーでzipを
   短時間で動作を確認したい場合は、`main.py` の `n_trials=150` を小さい値(例: 3)にしてください。
 - 実行結果の例は `m5_pipeline_run_example.txt` を参照してください。
 
- ** テストの実行
+  テストの実行
 
 ```
 pytest
