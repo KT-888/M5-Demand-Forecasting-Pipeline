@@ -23,10 +23,23 @@ M5 Forecasting Accuracy<br>
 10store×20product×365日×3年<br>
 
 必要ファイル:<br>
+# Dataset
+使用データセット: M5 Forecasting Accuracy
+(Kaggle / ニコシア大学 主催: https://www.kaggle.com/c/m5-forecasting-accuracy)
+
+動作確認用に、data/ にデータを同梱しています。
+出典: Zenodo掲載版(Kaggle提供, CC BY 4.0)
+https://zenodo.org/records/12636070
+
+【データの展開】
+cd data
+unzip sales_train_validation.zip
+unzip sell_prices.zip
+
 data/<br>
 ├── calendar.csv<br>
-├── sales_train_validation.csv<br>
-└── sell_prices.csv<br>
+├── sales_train_validation.zip<br>
+└── sell_prices.zip<br>
 
 # Project Structure
 project/<br>
