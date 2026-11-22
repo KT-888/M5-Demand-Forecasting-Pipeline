@@ -50,10 +50,10 @@ LightGBM + Optuna + Walkforward Validation を用いて、
 git clone https://github.com/KT-888/M5-Demand-Forecasting-Pipeline.git
 cd M5-Demand-Forecasting-Pipeline
 
-2. **ライブラリをインストール
+2. ライブラリをインストール
 pip install -r requirements.txt
 
-3. **データを展開(data/ にzipが同梱されています)
+3. データを展開(data/ にzipが同梱されています)
 cd data
 unzip sales_train_validation.zip
 unzip sell_prices.zip
